@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.LoginMapper">
+<resultMap   id="loginMap" type="model.Login">
+<result   column="account" property="account"></result>
+<result   column="password" property="password"></result>
+<result column="type" property="type"></result>
+</resultMap>
+<select id="selectByaccount"  parameterType="string" resultMap="loginMap">
+  select * from login where account=#{account}
+</select>
+
+<insert id="configlogin"  parameterType="model.Login">
+  insert into login(account,password,type
+  )
+  values(#{0},#{1},#{2}
+  )
+</insert>
+</mapper>

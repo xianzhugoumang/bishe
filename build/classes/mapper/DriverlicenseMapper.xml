@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.DriverlicenseMapper">
+<resultMap id="BaseResultMap" type="model.Driverlicense" >
+    <result column="driverlicense" property="driverlicense" jdbcType="VARCHAR"/>
+    <result column="drivername" property="drivername" jdbcType="VARCHAR"/>
+    <result column="restscore" property="restscore" jdbcType="INTEGER"/>
+    <result column="grantorganization" property="grantorganization" jdbcType="VARCHAR"/>
+      <result column="grantdate" property="grantdate" jdbcType="TIMESTAMP"/>
+          <result column="state" property="state" jdbcType="INTEGER"/>
+              <result column="licensetype" property="licensetype" jdbcType="INTEGER"/>
+              <result column="driveridetity" property="driveridetity" jdbcType="VARCHAR"/>
+              <result column="legaltime" property="legaltime" jdbcType="INTEGER"/> 
+  </resultMap>
+  
+  <select id="selectdriverlicensebycarlicense" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select * from
+    driverlicense
+    where  driverlicense=#{driverlicense,jdbcType=VARCHAR}
+  </select>
+  
+  <insert  id="adddriverlicense"  parameterType="model.Driverlicense">
+    insert 
+    into driverlicense(driverlicense,drivername,restscore,grantdate,state,licensetype,driveridentity,legaltime,grantorganization) 
+    values(#{driverlicense,jdbcType=VARCHAR},#{drivername,jdbcType=VARCHAR},#{restscore,jdbcType=INTEGER},#{grantdate,jdbcType=VARCHAR},#{state,jdbcType=VARCHAR},#{licensetype,jdbcType=VARCHAR},#{driveridentity,jdbcType=VARCHAR},#{legaltime,jdbcType=VARCHAR},#{grantorganization,jdbcType=VARCHAR})
+  </insert>
+  
+  <update id="koufen" >
+    update driverlicense
+    set restscore=restscore-#{1}
+    where driverlicense=#{0}
+  </update>
+  
+  <update id="setdriverlicensebydriverlicense"  parameterType="java.lang.String">
+  update driverlicense
+  set state=1
+  where driverlicense=#{driverlicense,jdbcType=VARCHAR}  
+  </update>
+  
+  </mapper>
+  

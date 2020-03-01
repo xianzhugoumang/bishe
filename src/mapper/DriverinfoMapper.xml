@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.DriverinfoMapper">
+<resultMap type="model.Driverinfo"  id="BaseresultMap">
+<result  column="driveraccount" property="driveraccount" jdbcType="VARCHAR"></result>
+<result  column="drivername" property="drivername" jdbcType="VARCHAR"></result>
+<result  column="driversex" property="driversex" jdbcType="INTEGER"></result>
+<result  column="driveridentity" property="driveridentity" jdbcType="VARCHAR"></result>
+<result  column="driveraddress" property="driveraddress" jdbcType="VARCHAR"></result>
+<result  column="driverphone" property="driverphone" jdbcType="VARCHAR"></result>
+<result  column="drivercofigdate" property="drivercofigdate" jdbcType="TIMESTAMP"></result>
+<result  column="drivercarno1" property="drivercarno1" jdbcType="VARCHAR"></result>
+<result  column="drivercarno2" property="drivercarno2" jdbcType="VARCHAR"></result>
+<result  column="drivercarno3" property="drivercarno3" jdbcType="VARCHAR"></result>
+<result  column="driverdriverlicense1" property="driverdriverlicense1" jdbcType="VARCHAR"></result>
+<result  column="driverdriverlicense2" property="driverdriverlicense2" jdbcType="VARCHAR"></result>
+<result  column="driverdriverlicense3" property="driverdriverlicense3" jdbcType="VARCHAR"></result>
+<result  column="driverage" property="driverage" jdbcType="VARCHAR"></result>
+<result  column="driveremail" property="driveremail" jdbcType="VARCHAR"></result>
+</resultMap>
+
+<select  id="selectdriverinfobydriveraccount"  resultMap="BaseresultMap"  parameterType="java.lang.String">
+  select *
+  from  driverinfo
+  where driveraccount=#{driveraccount,jdbcType=VARCHAR}
+</select>
+
+</mapper>

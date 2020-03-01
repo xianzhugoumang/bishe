@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.CarpaiinfoMapper">
+<resultMap type="model.Carpaiinfo" id="BaseResultMap">
+<result column="carpaino" property="carpaino" jdbcType="VARCHAR"/>
+<result column="carproductdate" property="carproductdate" jdbcType="TIMESTAMP"/>
+<result column="driverno" property="driverno" jdbcType="VARCHAR"/>
+<result column="caremissions" property="caremissions" jdbcType="INTEGER"/>
+<result column="cartons" property="cartons" jdbcType="VARCHAR"/>
+<result column="carpaiuselimit" property="carpaiuselimit" jdbcType="INTEGER"/>
+<result column="carbrandtype" property="carbrandtype" jdbcType="VARCHAR"/>
+<result column="carengineno" property="carengineno" jdbcType="VARCHAR"/>
+<result column="carlastyearcheck" property="carlastyearcheck" jdbcType="TIMESTAMP"/>
+<result column="carnextyearcheck" property="carnextyearcheck" jdbcType="TIMESTAMP"/>
+<result column="carpaimemo" property="carpaimemo" jdbcType="VARCHAR"/>
+<result column="carpaiowneraddress" property="carpaiowneraddress" jdbcType="VARCHAR"/>
+<result column="carpaiownersex" property="carpaiownersex" jdbcType="INTEGER"/>
+<result column="carpaiowneridentity" property="carpaiowneridentity" jdbcType="VARCHAR"/>
+<result column="carpaiownername" property="carpaiownername" jdbcType="VARCHAR"/>
+<result column="carpairesponserphone" property="carpairesponserphone" jdbcType="VARCHAR"/>
+<result column="carpairesponseridentity" property="carpairesponseridentity" jdbcType="VARCHAR"/>
+<result column="carpairesponsername" property="carpairesponsername" jdbcType="VARCHAR"/>
+<result column="cartype" property="carpaino" jdbcType="INTEGER"/>
+<result column="carusetype" property="carpaino" jdbcType="INTEGER"/>
+<result column="grantdate" property="carpaino" jdbcType="TIMESTAMP"/>
+<result column="carpaino" property="carpaino" jdbcType="VARCHAR"/>
+<result column="carpaigrant" property="carpaigrant" jdbcType="INTEGER"/>
+</resultMap>
+<insert id="addcarpaiinfo" parameterType="model.Carpaiinfo" >
+  insert into
+  carpaiinfo(carpaino,carproductdate,driverno,caremissions,cartons,carpaiuselimit,carbrandtype,carengineno,carlastyearcheck,carnextyearcheck,carusetype,carpaigrant,carpairesponsername,carpairesponseridentity,carpairesponserphone,carpaiownername,carpaiowneridentity,carpaiownersex,carpaiowneraddress,carpaimemo,cartype,grantdate)
+  values(#{carpaino,jdbcType=VARCHAR},#{carproductdate,jdbcType=VARCHAR},#{driverno,jdbcType=VARCHAR},#{caremissions,jdbcType=VARCHAR},#{cartons,jdbcType=VARCHAR},
+  #{carpaiuselimit,jdbcType=VARCHAR},#{carbrandtype,jdbcType=VARCHAR},#{carengineno,jdbcType=VARCHAR},#{carlastyearcheck,jdbcType=VARCHAR},#{carnextyearcheck,jdbcType=VARCHAR},#{carusetype,jdbcType=VARCHAR},
+  #{carpaigrant,jdbcType=VARCHAR},#{carpairesponsername,jdbcType=VARCHAR},#{carpairesponseridentity,jdbcType=VARCHAR},#{carpairesponserphone,jdbcType=VARCHAR},#{carpaiownername,jdbcType=VARCHAR},#{carpaiowneridentity,jdbcType=VARCHAR},#{carpaiownersex,jdbcType=VARCHAR},#{carpaiowneraddress,jdbcType=VARCHAR},#{carpaimemo,jdbcType=VARCHAR},#{cartype,jdbcType=VARCHAR},#{grantdate,jdbcType=VARCHAR})
+</insert>
+</mapper>

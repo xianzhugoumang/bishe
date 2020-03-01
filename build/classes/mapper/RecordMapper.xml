@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.RecordMapper" >
+  <resultMap id="BaseResultMap" type="model.Record" >
+    <result column="recordno" property="recordno" jdbcType="VARCHAR"/>
+    <result column="drivername" property="drivername" jdbcType="VARCHAR"/>
+    <result column="policename" property="policename" jdbcType="VARCHAR"/>
+      <result column="date" property="date" jdbcType="TIMESTAMP"/>
+          <result column="adminaccount" property="adminaccount" jdbcType="VARCHAR"/>
+              <result column="type" property="type" jdbcType="INTEGER"/>
+              <result column="score" property="score" jdbcType="INTEGER"/>
+              <result column="carno" property="carno" jdbcType="VARCHAR"/>
+              <result column="adminaction" property="adminaction" jdbcType="INTEGER"/>
+              <result column="driveridentity" property="driveridentity" jdbcType="VARCHAR"/>
+             <result column="src" property="src" jdbcType="VARCHAR"/>
+  </resultMap>
+  
+  <select  id="selectrecordbyadmin" resultMap="BaseResultMap" parameterType="java.lang.String" >
+      select *
+      from record
+      where adminaccount=#{adminaccount,jdbcType=VARCHAR}
+      and   adminaction!=0
+  </select>
+  
+  <select id="selectadmineleterecordbyadmin"  resultMap="BaseResultMap" parameterType="java.lang.String">
+     select *
+     from record
+     where adminaccount=#{adminaccount,jdbcType=VARCHAR}
+     and adminaction=0
+  
+  </select>
+  <select id="selectadminmodifyrecordbyadmin" resultMap="BaseResultMap" parameterType="java.lang.String">
+   select *
+   from record
+   where adminaccount=#{adminaccount,jdbcType=VARCHAR}
+   and adminaction=2
+  </select>
+
+  <update   id="deleterecordbyadminaccount"   parameterType="java.lang.String">
+  update record
+  set adminaction=0
+  where recordno=#{recordno,jdbcType=VARCHAR}
+  </update>
+  
+   <insert id="addreacordbyadminaccount"  parameterType="model.Record">
+  insert into record(recordno,drivername,policename,state,adminaccount,type,carno,score,adminaction,date,src,driveridentity)
+  values(#{recordno,jdbcType=VARCHAR},#{drivername,jdbcType=VARCHAR},#{policename,jdbcType=VARCHAR},#{state,jdbcType=INTEGER},#{adminaccount,jdbcType=VARCHAR},#{type,jdbcType=INTEGER},#{carno,jdbcType=VARCHAR},#{score,jdbcType=INTEGER},#{adminaction,jdbcType=INTEGER},#{date,jdbcType=VARCHAR},#{src,jdbcType=VARCHAR},#{driveridentity,jdbcType=VARCHAR})
+  </insert> 
+  
+  <select  id="selectrecordbyrecordno"  resultMap="BaseResultMap" parameterType="java.lang.String">
+    select *
+    from record
+    where recordno=#{recordno,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectrecordsbydriveridentity"   resultMap="BaseResultMap" parameterType="model.Record">
+  select *
+  from record
+  where driveridentity=#{driveridentity,jdbcType=VARCHAR}
+  </select >
+  
+  <select id="selectrecordsbydriveridentityandstate" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select *
+    from record
+    where driveridentity=#{driveridentity,jdbcType=VARCHAR} and state=0
+  </select>
+  
+  <select  id="adminselectmonthrecord"   resultMap="BaseResultMap" parameterType="java.lang.String">
+    select *
+    from
+    record 
+    where  date >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)
+  </select>
+  
+  
+  
+  <update id="updaterecordbysrc" parameterType="java.lang.String">
+    update record
+    set src=#{src,jdbcType=VARCHAR}
+    where   src=""
+  </update>
+  
+  <select id="selectrecordsbycarno"  parameterType="java.lang.String" resultMap="BaseResultMap">
+   select *
+   from
+   record
+   where carno=#{carno,jdbcType=VARCHAR}
+  </select>
+  
+  <update id="setrecordstatebyrecordno" parameterType="java.lang.String">
+    update record
+    set state=1
+    where recordno=#{recordno,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectrecordsbycarnoinmonth" parameterType="java.lang.String" resultMap="BaseResultMap">
+   select *
+   from
+   record
+   where carno=#{carno,jdbcType=VARCHAR}and date >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)
+  
+  </select>
+  
+  <select id="selectrecordsbycarnoinweek" parameterType="java.lang.String" resultMap="BaseResultMap">
+   select *
+   from
+   record
+   where carno=#{carno,jdbcType=VARCHAR}and date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+  
+  </select>
+  
+    <select id="selectrecordsbycarnoinyear" parameterType="java.lang.String" resultMap="BaseResultMap">
+   select *
+   from
+   record
+   where carno=#{carno,jdbcType=VARCHAR}and date >= DATE_SUB(CURDATE(), INTERVAL 365 DAY)
+  </select>
+  
+  <select id="selectProductsByPage" resultMap="BaseResultMap" >  
+  select   *  from record   limit #{startPos},#{pageSize}   
+</select> 
+ 
+<select id="getrecords" resultType="long">  
+  SELECT COUNT(*) FROM record  
+</select> 
+  
+  
+  
+</mapper>

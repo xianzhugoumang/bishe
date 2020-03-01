@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.DriverlicensebangdingMapper">
+<resultMap type="model.Driverlicensebangding" id="BaseResultMap">
+<result column="driverlicense" property="driverlicense" jdbcType="VARCHAR"/>
+<result column="driveraccount" property="driveraccount" jdbcType="VARCHAR"/>
+</resultMap>
+
+
+<select id="selectalllicensebangdings" parameterType="java.lang.String" resultMap="BaseResultMap">
+select * from
+driverlicensebangding
+where driveraccount=#{driveraccount,jdbcType=VARCHAR}
+</select>
+
+<delete id="jiechudriverlicensebangding" parameterType="java.lang.String">
+delete from
+driverlicensebangding
+where driverlicense=#{driverlicense,jdbcType=VARCHAR}
+</delete>
+
+<select id="selectalllicensebangdings2" parameterType="java.lang.String" resultMap="BaseResultMap">
+select * from
+driverlicensebangding
+</select>
+
+
+<insert  id="adddriverlicensebangding" parameterType="model.Driverlicensebangding"  >
+insert into driverlicensebangding (driverlicense,driveraccount)
+values(#{driverlicense},#{driveraccount})
+</insert>
+
+
+
+</mapper>
